@@ -69,10 +69,10 @@ class LetsEncryptCertificate(CertificateBackend):
         #utils.exec_cmd(
         #    "wget https://dl.eff.org/certbot-auto; chmod a+x certbot-auto",
         #    cwd="/opt")
-        utils.exec_cmd(
-            "certbot certonly -n --standalone -d {} "
-            "-m {} --agree-tos".format(
-                hostname, self.config.get("letsencrypt", "email")))
+        #utils.exec_cmd(
+        #    "certbot certonly -n --standalone -d {} "
+        #    "-m {} --agree-tos".format(
+        #        hostname, self.config.get("letsencrypt", "email")))
         self.config.set("general", "tls_cert_file", (
             "/etc/letsencrypt/live/{}/fullchain.pem".format(hostname)))
         self.config.set("general", "tls_key_file", (
