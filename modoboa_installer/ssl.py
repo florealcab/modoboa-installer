@@ -66,23 +66,23 @@ class LetsEncryptCertificate(CertificateBackend):
         utils.printcolor(
             "Generating new certificate using letsencrypt", utils.YELLOW)
         hostname = self.config.get("general", "hostname")
+        #utils.exec_cmd(
+        #    "wget https://dl.eff.org/certbot-auto; chmod a+x certbot-auto",
+        #    cwd="/opt")
         utils.exec_cmd(
-            "wget https://dl.eff.org/certbot-auto; chmod a+x certbot-auto",
-            cwd="/opt")
-        utils.exec_cmd(
-            "/opt/certbot-auto certonly -n --standalone -d {} "
+            "certbot certonly -n --standalone -d {} "
             "-m {} --agree-tos".format(
                 hostname, self.config.get("letsencrypt", "email")))
         self.config.set("general", "tls_cert_file", (
             "/etc/letsencrypt/live/{}/fullchain.pem".format(hostname)))
         self.config.set("general", "tls_key_file", (
             "/etc/letsencrypt/live/{}/privkey.pem".format(hostname)))
-        with open("/etc/cron.d/letsencrypt", "w") as fp:
-            fp.write("0 */12 * * * root /opt/certbot-auto renew "
-                     "--quiet --no-self-upgrade --force-renewal\n")
+        #with open("/etc/cron.d/letsencrypt", "w") as fp:
+        #    fp.write("0 */12 * * * root /opt/certbot-auto renew "
+        #             "--quiet --no-self-upgrade --force-renewal\n")
         cfg_file = "/etc/letsencrypt/renewal/{}.conf".format(hostname)
-        pattern = "s/authenticator = standalone/authenticator = nginx/"
-        utils.exec_cmd("perl -pi -e '{}' {}".format(pattern, cfg_file))
+        #pattern = "s/authenticator = standalone/authenticator = nginx/"
+        #utils.exec_cmd("perl -pi -e '{}' {}".format(pattern, cfg_file))
 
 
 def get_backend(config):
