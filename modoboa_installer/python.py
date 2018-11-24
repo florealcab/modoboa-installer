@@ -49,7 +49,7 @@ def install_package_from_repository(name, url, vcs="git", venv=None, **kwargs):
     utils.exec_cmd(cmd, **kwargs)
 
 
-def setup_virtualenv(path, sudo_user=None, python_version=2):
+def setup_virtualenv(path, sudo_user=None, python_version=3):
     """Install a virtualenv if needed."""
     if os.path.exists(path):
         return

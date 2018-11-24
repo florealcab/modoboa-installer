@@ -22,7 +22,7 @@ class Modoboa(base.Installer):
     no_daemon = True
     packages = {
         "deb": [
-            "build-essential", "python-dev", "libxml2-dev", "libxslt-dev",
+            "build-essential", "python3-dev", "libxml2-dev", "libxslt-dev",
             "libjpeg-dev", "librrd-dev", "rrdtool", "libffi-dev", "cron"],
         "rpm": [
             "gcc", "gcc-c++", "python-devel", "libxml2-devel", "libxslt-devel",
